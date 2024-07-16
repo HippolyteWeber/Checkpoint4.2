@@ -8,6 +8,12 @@ const router = express.Router();
 const userRouter = require("./user/router");
 
 router.use("/user", userRouter);
+
 /* ************************************************************************* */
+// Import Auth Router
+/* ************************************************************************* */
+const authRouter = require("./auth/router");
+
+router.use("/auth", authRouter);
 
 module.exports = router;
