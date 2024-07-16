@@ -65,10 +65,39 @@ const destroy = async (req, res, next) => {
   }
 };
 
+const uploadProfilPicture = async (req, res, next) => {
+  try {
+    if (!req.file) {
+      return res.status(400).send("Aucun fichier n'a été téléchargé.");
+    }
+
+    const { userId } = req.body;
+    const profilPicture = req.file.path;
+
+    const updated = await tables.user.updateProfilePicture(
+      userId,
+      profilPicture
+    );
+
+    if (updated) {
+      return res.status(200).json({
+        message: "Votre photo de profil a été mise à jour avec succès.",
+        profilPicture,
+      });
+    }
+
+    return res.status(404).send("l'utilisateur n'existe pas");
+  } catch (err) {
+    next(err);
+    return res.status(500).send("erreur serveur");
+  }
+};
+
 module.exports = {
   create,
   readAll,
   readOneById,
   update,
   destroy,
+  uploadProfilPicture,
 };

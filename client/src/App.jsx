@@ -12,6 +12,7 @@ function App() {
   return (
     <div>
       <Outlet context={{ currentUser, setCurrentUser }} />
+      <p> votre pseudo est {currentUser?.pseudo}</p>
     </div>
   );
 }

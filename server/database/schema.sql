@@ -11,6 +11,7 @@ CREATE TABLE user (
     pseudo VARCHAR(255) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    profile_picture VARCHAR(255) NULL,
     role_id INT UNSIGNED NULL,
     FOREIGN KEY (role_id) REFERENCES role (role_id)
 );

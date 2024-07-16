@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function LandingPage() {
   return (
     <div className="bg-blue1 h-screen">
@@ -14,14 +12,12 @@ export default function LandingPage() {
         </p>
       </div>
       <div className="mt-40 flex flex-col justify-center items-center lg:gap-1">
-        <Link to="/hub">
-          <button
-            type="button"
-            className="bg-secondyellow hover:bg-firstyellow text-softbluec hover:text-darkblueC  border-2 border-softbluec rounded-lg mx-auto px-8  "
-          >
-            Explorer
-          </button>
-        </Link>
+        <button
+          type="button"
+          className="bg-secondyellow hover:bg-firstyellow text-softbluec hover:text-darkblueC  border-2 border-softbluec rounded-lg mx-auto px-8  "
+        >
+          Explorer
+        </button>
       </div>
     </div>
   );

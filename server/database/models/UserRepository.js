@@ -40,6 +40,14 @@ class UserRepository extends AbstractRepository {
     return result.affectedRows > 0;
   }
 
+  async updateProfilePicture(userId, profilePicture) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET profile_picture = ? WHERE user_id = ?`,
+      [profilePicture, userId]
+    );
+    return result.affectedRows > 0;
+  }
+
   async destroy(id) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE user_id = ?`,
@@ -50,7 +58,7 @@ class UserRepository extends AbstractRepository {
 
   async findUserByEmail(email) {
     const [result] = await this.database.query(
-      `SELECT pseudo, password FROM ${this.table} WHERE email = ?`,
+      `SELECT user_id, pseudo, password FROM ${this.table} WHERE email = ?`,
       [email]
     );
     return result;
