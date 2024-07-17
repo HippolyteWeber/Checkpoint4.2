@@ -6,12 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blue1: "#184E77",
-        blue2: "#1E6091",
-        blue3: "#1A759F",
-        blue4: "#168AAD",
-        blue5: "#34A0A4",
-        green1: "#52B69A",
+        background: "#0F172A",
+        component: "#172032",
+        text: "#E2E8F0",
+        specialcomponent: "#6366F1",
+        specialcomponent2: "#2E2F72",
+        componentbackground: "#151F31",
         green2: "#76C893",
         green3: "#99D98C",
         green4: "#B5E48C",
