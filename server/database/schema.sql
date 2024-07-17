@@ -5,6 +5,12 @@ CREATE TABLE role (
     role VARCHAR(80) 
 );
 
+INSERT INTO role (role) VALUES 
+('Admin'),
+('User'),
+('Manager'),
+('Guest'),
+('Operator');
 
 CREATE TABLE user (
     user_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -15,14 +21,19 @@ CREATE TABLE user (
     role_id INT UNSIGNED NULL,
     FOREIGN KEY (role_id) REFERENCES role (role_id)
 );
+INSERT INTO user (pseudo, email, password,  role_id)
+VALUES ('john_doe', 'john.doe@example.com', 'hashed_password_here', 2);
 
 
-INSERT INTO role (role) VALUES 
-('Admin'),
-('User'),
-('Manager'),
-('Guest'),
-('Operator');
+CREATE TABLE subject(
+    subject_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    user_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (user_id)
+);  
 
 CREATE TRIGGER before_user_insert
 BEFORE INSERT ON User

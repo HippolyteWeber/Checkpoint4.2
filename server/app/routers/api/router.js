@@ -10,6 +10,13 @@ const userRouter = require("./user/router");
 router.use("/user", userRouter);
 
 /* ************************************************************************* */
+// Import Subject Router
+/* ************************************************************************* */
+const subjectRouter = require("./subject/router");
+
+router.use("/subject", subjectRouter);
+
+/* ************************************************************************* */
 // Import Auth Router
 /* ************************************************************************* */
 const authRouter = require("./auth/router");
