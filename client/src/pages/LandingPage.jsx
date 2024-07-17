@@ -1,6 +1,6 @@
 export default function LandingPage() {
   return (
-    <div className="bg-blue1 h-screen">
+    <div className="bg-background h-screen">
       <div className="pt-12">
         <h1 className="text-center text-3xl mt-8 font-main text-white lg:mt-20">
           Bienvenue dans le{" "}
