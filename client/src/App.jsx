@@ -29,7 +29,7 @@ function App() {
       />
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Suspense fallback={<Loading />}>
-        <div className="w-12/12  items-center pt-40">
+        <div className="w-12/12  items-center pt-10 md:pt-40">
           <Outlet context={{ currentUser, setCurrentUser }} />
           {/* <p> votre pseudo est {currentUser?.pseudo}</p> */}
         </div>

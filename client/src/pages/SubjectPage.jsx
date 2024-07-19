@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useOutletContext } from "react-router-dom";
+import { useParams, useOutletContext, Link } from "react-router-dom";
 import CommentModal from "../components/CommentModal";
 
 export default function SubjectPage() {
@@ -101,6 +101,14 @@ export default function SubjectPage() {
           />
         </>
       )}
+      {!currentUser ? (
+        <Link
+          to="/login"
+          className=" bg-zinc-900 hover:bg-specialcomponent  outline-none border border-specialcomponent hover:border-indigo-400 text-zinc-400 hover:text-zinc-900 rounded p-1 md:p-2 mb-10"
+        >
+          Connecté vous pour répondre !
+        </Link>
+      ) : null}
     </div>
   );
 }
