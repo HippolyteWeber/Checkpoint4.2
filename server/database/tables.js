@@ -2,7 +2,7 @@
 
 const SubjectRepository = require("./models/SubjectRepository");
 const UserRepository = require("./models/UserRepository");
-
+const CommentRepository = require("./models/CommentRepository");
 // Create an empty object to hold data repositories for different tables
 const tables = {};
 
@@ -14,6 +14,7 @@ const tables = {};
 
 tables.user = new UserRepository();
 tables.subject = new SubjectRepository();
+tables.comment = new CommentRepository();
 
 /* ************************************************************************* */
 

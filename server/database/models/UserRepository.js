@@ -24,7 +24,7 @@ class UserRepository extends AbstractRepository {
 
   async readOneById(id) {
     const [rows] = await this.database.query(
-      ` SELECT u.pseudo, u.email, u.password, r.role FROM ${this.table} AS u JOIN role AS r ON u.role_id = r.role_id WHERE u.user_id = ?`,
+      ` SELECT u.pseudo, u.email, u.password, r.role, u.profile_picture FROM ${this.table} AS u JOIN role AS r ON u.role_id = r.role_id WHERE u.user_id = ?`,
       [id]
     );
     return rows[0];
@@ -63,6 +63,13 @@ class UserRepository extends AbstractRepository {
     );
     return result;
   }
-}
 
+  async findUser(email, pseudo) {
+    const [rows] = await this.database.query(
+      `SELECT email, pseudo FROM ${this.table} WHERE email = ? OR pseudo = ?`,
+      [email, pseudo]
+    );
+    return rows[0];
+  }
+}
 module.exports = UserRepository;

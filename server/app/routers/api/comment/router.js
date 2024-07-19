@@ -1,17 +1,16 @@
 const express = require("express");
 
 const router = express.Router();
+
 const {
   create,
   readAll,
   readOneById,
   update,
   destroy,
-} = require("../../../controllers/subjectActions");
+} = require("../../../controllers/commentActions");
 
-const validateSubjectSchema = require("../../../../middleware/validateSubjectSchema");
-
-router.post("/", validateSubjectSchema, create);
+router.post("/", create);
 
 router.get("/", readAll);
 

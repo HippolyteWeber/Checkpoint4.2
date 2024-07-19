@@ -3,8 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
-function RegisterPage() {
+export default function RegisterPage() {
   const {
     register,
     handleSubmit,
@@ -17,13 +18,23 @@ function RegisterPage() {
   const onSubmit = async (data) => {
     const formData = { ...data };
     delete formData.confirmpassword;
-
-    setDisplaySecondButton(true);
-    reset();
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/user`, data);
+      toast.success("Votre inscritption est prise en compte!");
+
+      setDisplaySecondButton(true);
+      reset();
     } catch (e) {
-      console.error(e.response.data);
+      const errorMessage = e.response?.data?.message;
+      if (errorMessage === "Pseudo et email déjà utilisés") {
+        toast.error("L'email ou pseudo déjà utilisé");
+      } else if (errorMessage === "Email déjà utilisé") {
+        toast.error("l'email déjà utilisé");
+      } else if (errorMessage === "Pseudo déjà utilisé") {
+        toast.error("Le pseudo est déjà utilisé");
+      } else {
+        toast.error("Erreur lors de l'inscription");
+      }
     }
   };
 
@@ -43,7 +54,7 @@ function RegisterPage() {
                 id="pseudo"
                 name="pseudo"
                 defaultValue=""
-                placeholder="Saisissez votre prénom"
+                placeholder="Saisissez votre pseudo"
                 {...register("pseudo", {
                   required: "Ce champ est requis !",
                   minLength: {
@@ -53,11 +64,6 @@ function RegisterPage() {
                   },
                 })}
               />
-              {errors?.pseudo && (
-                <span className="text-red-500 text-center">
-                  {errors.firstName.message}
-                </span>
-              )}
             </div>
             <div>
               <input
@@ -160,5 +166,3 @@ function RegisterPage() {
     </div>
   );
 }
-
-export default RegisterPage;

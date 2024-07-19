@@ -1,4 +1,5 @@
 // Import access to database tables
+
 const tables = require("../../database/tables");
 
 const create = async (req, res, next) => {
@@ -28,9 +29,15 @@ const readOneById = async (req, res, next) => {
     const user = await tables.user.readOneById(req.params.id);
     if (user == null) {
       res.sendStatus(404);
-    } else {
-      res.json(user);
+      return;
     }
+
+    const profilePicturePath = `uploads/profileImage-${req.params.id}.jpg`;
+
+    res.json({
+      ...user,
+      profile_picture: profilePicturePath,
+    });
   } catch (err) {
     next(err);
   }
@@ -64,7 +71,19 @@ const destroy = async (req, res, next) => {
     next(e);
   }
 };
+// const getProfilePicture = (req, res, next) => {
+//   const { userId } = req.params;
 
+//   const profilePicturePath = `uploads/profileImage-${userId}.jpg`;
+
+//   const fullPath = path.resolve(profilePicturePath);
+//   if (!fullPath) {
+//     return res.status(404).send("Profile picture not found");
+//   }
+
+//   // Send the file to the client
+//   res.sendFile(fullPath);
+// };
 const uploadProfilPicture = async (req, res, next) => {
   try {
     if (!req.file) {

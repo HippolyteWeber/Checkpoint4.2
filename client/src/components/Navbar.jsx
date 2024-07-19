@@ -7,7 +7,7 @@ export default function Navbar({ currentUser = null, setCurrentUser }) {
     <div className="navbar fixed text-text font-main bg-component">
       <div className="flex-1">
         <Link
-          to="/"
+          to="/home"
           className="btn btn-ghost text-xl link-underline link-underline-black focus:text-softbluec"
         >
           Accueil

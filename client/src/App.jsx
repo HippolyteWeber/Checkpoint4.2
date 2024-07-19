@@ -1,9 +1,10 @@
+import { useState, useEffect, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useEffect } from "react";
 import fetchAuth from "../lib/auth";
 import Navbar from "./components/Navbar";
+import Loading from "./components/Loading";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -12,7 +13,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <main className="w-full">
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -27,9 +28,13 @@ function App() {
         transition={Bounce}
       />
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
-      <Outlet context={{ currentUser, setCurrentUser }} />
-      <p> votre pseudo est {currentUser?.pseudo}</p>
-    </div>
+      <Suspense fallback={<Loading />}>
+        <div className="w-12/12  items-center pt-40">
+          <Outlet context={{ currentUser, setCurrentUser }} />
+          {/* <p> votre pseudo est {currentUser?.pseudo}</p> */}
+        </div>
+      </Suspense>
+    </main>
   );
 }
 

@@ -6,27 +6,41 @@ class SubjectRepository extends AbstractRepository {
   }
 
   async create(subject) {
-    const { title, description, userId } = subject;
+    const { title, description, text, userId } = subject;
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table}(title, description, user_id) values (?, ?, ?)`,
-      [title, description, userId]
+      `INSERT INTO ${this.table}(title, description, text, user_id) values (?, ?, ?, ?)`,
+      [title, description, text, userId]
     );
     return result.insertId;
   }
 
   async readAll() {
     const [rows] = await this.database.query(
-      `SELECT s.title, s.description, u.pseudo, s.created_at, s.updated_at, s.subject_id FROM ${this.table} AS s JOIN user AS u ON s.user_id = u.user_id`
+      `SELECT s.title, s.description, u.pseudo, s.created_at, s.updated_at, s.subject_id FROM ${this.table} AS s JOIN user AS u ON s.user_id = u.user_id ORDER BY s.created_at DESC`
     );
     return rows;
   }
 
   async readOneById(id) {
-    const [rows] = await this.database.query(
-      `SELECT s.title, s.description, u.pseudo, s.created_at, s.updated_at, s.subject_id FROM ${this.table} AS s JOIN user AS u ON s.user_id = u.user_id WHERE s.subject_id = ?`,
+    const [subjectRows] = await this.database.query(
+      `SELECT s.title, s.description, s.text, s.created_at AS subject_created_at, s.updated_at AS subject_updated_at, s.subject_id, u.pseudo AS subject_user_pseudo 
+      FROM ${this.table} AS s 
+      JOIN user AS u ON s.user_id = u.user_id 
+      WHERE s.subject_id = ?`,
       [id]
     );
-    return rows[0];
+
+    const [commentRows] = await this.database.query(
+      `SELECT c.comment_id, c.text AS comment_text, c.created_at AS comment_created_at, c.updated_at AS comment_updated_at, u.pseudo AS comment_user_pseudo 
+      FROM comment AS c 
+      JOIN user AS u ON c.user_id = u.user_id 
+      WHERE c.subject_id = ?  ORDER BY c.created_at ASC`,
+      [id]
+    );
+
+    const subject = subjectRows[0] || null;
+
+    return { ...subject, comments: commentRows };
   }
 
   async update(id, subject) {

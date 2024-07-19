@@ -28,13 +28,23 @@ VALUES ('john_doe', 'john.doe@example.com', 'hashed_password_here', 2);
 CREATE TABLE subject(
     subject_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
     title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (user_id)
 );  
-
+CREATE TABLE comment(
+    comment_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    text TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    user_id INT UNSIGNED NOT NULL,
+    subject_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (user_id),
+    FOREIGN KEY (subject_id) REFERENCES subject (subject_id)
+);
 CREATE TRIGGER before_user_insert
 BEFORE INSERT ON User
 FOR EACH ROW

@@ -12,6 +12,10 @@ module.exports = {
         specialcomponent: "#6366F1",
         specialcomponent2: "#2E2F72",
         componentbackground: "#151F31",
+        subjectCardBg: {
+          "custom-gradient":
+            "linear-gradient(to right, rgba(30, 41, 59, 0.2), rgba(30, 41, 59, 0.2))",
+        },
         green2: "#76C893",
         green3: "#99D98C",
         green4: "#B5E48C",

@@ -10,6 +10,8 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import ProfilPage from "./pages/ProfilPage";
+import SubjectPage from "./pages/SubjectPage";
+import CreateSubject from "./pages/CreateSubject";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <HomePage />,
+      },
+      {
+        path: "/subject/:id",
+        element: <SubjectPage />,
+      },
+      {
+        path: "/subjectCreate",
+        element: <CreateSubject />,
       },
       {
         path: "/profil",
