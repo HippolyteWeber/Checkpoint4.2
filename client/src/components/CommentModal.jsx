@@ -22,7 +22,7 @@ export default function CommentModal({
         userId: currentUser.user_id,
         subjectId: subjectId,
       });
-      toast.success("Comment posted successfully!");
+      toast.success("Votre commentaire à été ajouté !");
       reset();
       onCommentAdded();
       onClose();
@@ -35,29 +35,31 @@ export default function CommentModal({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded shadow-lg w-1/3">
-        <h2 className="text-xl mb-4">Add a Comment</h2>
+      <div className="bg-background p-6 rounded shadow-lg w-1/3">
+        <h2 className="text-xl mb-4">Ajouter un commentaire</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <textarea
-              {...register("text", { required: "Comment text is required." })}
-              placeholder="Enter your comment here..."
-              className="w-full border border-gray-300 p-2 rounded"
+              {...register("text", {
+                required: "veuilliez écrire votre commentaire !",
+              })}
+              placeholder="Entrer votre commentaire ici"
+              className="w-full border border-gray-300 p-2 rounded text-white"
               rows="4"
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-specialcomponent hover:bg-specialcomponent2 text-zinc-900 hover:text-zinc-300 px-4 py-2 border rounded"
           >
-            envoyé
+            Répondre
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="bg-red-500 text-white px-4 py-2 rounded ml-2"
+            className="bg-red-800 hover:bg-red-500 text-white border border-black px-4 py-2 rounded ml-2"
           >
-            annulé
+            annuler
           </button>
         </form>
       </div>

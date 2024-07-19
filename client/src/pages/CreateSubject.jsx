@@ -24,18 +24,21 @@ export default function CreateSubject() {
     data.userId = currentUser.user_id;
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/subject`, data);
-      toast.success("Votre sujet est pris en compte!");
+      toast.success("Votre post a été créé avec succès !");
       navigate("/home");
       reset();
     } catch (e) {
-      toast.error("Erreur lors de la création du sujet");
+      toast.error("Erreur lors de la création du post");
       console.error(e);
     }
   };
 
   return (
-    <main className="flex justify-center">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <main className="flex justify-center md:justify-start md:ml-24">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-4 w-72 md:w-96"
+      >
         <input
           type="text"
           name="title"
@@ -45,15 +48,13 @@ export default function CreateSubject() {
             required: "Ce champ est requis !",
             minLength: {
               value: 3,
-              message: "Le titre doit contenir au moins 2 caractères",
+              message: "Le titre doit contenir au moins 3 caractères",
             },
           })}
           className="rounded p-2 md:w-96 bg-white outline-none border-2 focus:border-none focus:outline-specialcomponent placeholder:text-slate-700 text-black"
         />
         {errors?.title && (
-          <span className="text-red-500 text-center">
-            {errors?.title.message}
-          </span>
+          <span className="text-red-500 md:w-96">{errors?.title.message}</span>
         )}
         <input
           type="text"
@@ -64,13 +65,13 @@ export default function CreateSubject() {
             required: "Ce champ est requis !",
             minLength: {
               value: 10,
-              message: "La description doit contenir au moins 2 caractères",
+              message: "La description doit contenir au moins 10 caractères",
             },
           })}
           className="rounded p-2 md:w-96 bg-white outline-none border-2 focus:border-none focus:outline-specialcomponent placeholder:text-slate-700 text-black"
         />
         {errors?.description && (
-          <span className="text-red-500 text-center">
+          <span className="text-red-500  md:w-96">
             {errors?.description.message}
           </span>
         )}
@@ -90,7 +91,7 @@ export default function CreateSubject() {
         />
         <button
           type="submit"
-          className="bg-specialcomponent hover:bg-specialcomponent2 w-28 rounded-sm text-"
+          className=" bg-zinc-900 hover:bg-specialcomponent  outline-none border border-specialcomponent hover:border-indigo-400 text-zinc-400 hover:text-zinc-900 rounded  h-8  text-center  w-28"
         >
           Créer le sujet
         </button>

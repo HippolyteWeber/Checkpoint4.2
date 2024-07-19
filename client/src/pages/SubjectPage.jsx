@@ -81,7 +81,7 @@ export default function SubjectPage() {
           </div>
         ))
       ) : (
-        <p>No comments yet.</p>
+        <p>Pas encore de commentaire</p>
       )}
       {currentUser && (
         <>

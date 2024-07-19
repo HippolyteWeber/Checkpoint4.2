@@ -146,9 +146,9 @@ export default function RegisterPage() {
               to="/login"
               type="button"
               disabled={!displaySecondButton}
-              className={`btn w-full p-2 mt-3 ${displaySecondButton ? "bg-yellow-500 text-white  hover:bg-yellow-600" : "bg-gray-500 cursor-not-allowed"}`}
+              className={`btn w-full p-2 mt-3 ${displaySecondButton ? "bg-specialcomponent text-zinc-900 hover:text-zinc-300  hover:bg-specialcomponent2" : "bg-gray-500 cursor-not-allowed"}`}
             >
-              Suivant
+              aller à la connexion
             </Link>
           </form>
           <div>

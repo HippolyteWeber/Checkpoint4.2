@@ -44,7 +44,7 @@ export default function Pagination() {
       {currentUser && (
         <Link
           to="/subjectCreate"
-          className="borderSpecialButton   md:ml-[625px]"
+          className="bg-zinc-900 hover:bg-specialcomponent  outline-none border border-specialcomponent hover:border-indigo-400 text-zinc-400 hover:text-zinc-900  rounded p-2 md:ml-[625px]"
         >
           crée votre poste
         </Link>
@@ -52,7 +52,7 @@ export default function Pagination() {
 
       {records.map((s) => (
         <div
-          className=" w-6/12 shadow-xl m-4 borderSpecial "
+          className=" w-10/12 md:w-6/12 shadow-xl m-4 borderSpecial "
           key={s.subject_id}
         >
           <div className="p-2  ">
@@ -68,7 +68,7 @@ export default function Pagination() {
 
               <Link
                 to={`/subject/${s.subject_id}`}
-                className=" text-center bg-specialcomponent hover:bg-specialcomponent2 rounded h-6 w-8 text-zinc-900 border border-indigo-400 hover:text-zinc-50"
+                className=" bg-zinc-900 hover:bg-specialcomponent  outline-none border border-specialcomponent hover:border-indigo-400 text-zinc-400 hover:text-zinc-900 rounded p-1 md:p-2"
               >
                 Lire
               </Link>
