@@ -3,19 +3,17 @@
 const express = require("express");
 
 const app = express();
+
 const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
 // Configure it
-
 /* ************************************************************************* */
 
 // CORS Handling: Why is the current code commented out and do I need to define specific allowed origins for my project?
 
 // CORS (Cross-Origin Resource Sharing) is a security mechanism in web browsers that blocks requests from a different domain than the server.
 // You may find the following magic line in forums:
-
-// app.use(cors());
 
 // You should NOT do that: such code uses the `cors` module to allow all origins, which can pose security issues.
 // For this pedagogical template, the CORS code is commented out to show the need for defining specific allowed origins.
@@ -54,6 +52,7 @@ app.use(
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
 app.use(express.json());
+
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());

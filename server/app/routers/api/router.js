@@ -6,10 +6,31 @@ const router = express.Router();
 // Import And Use Routers Here
 /* ************************************************************************* */
 
-const itemsRouter = require("./items/router");
+const userRouter = require("./user/router");
 
-router.use("/items", itemsRouter);
+router.use("/user", userRouter);
 
 /* ************************************************************************* */
+// Import Subject Router
+/* ************************************************************************* */
+
+const subjectRouter = require("./subject/router");
+
+router.use("/subject", subjectRouter);
+
+/* ************************************************************************* */
+// Import Auth Router
+/* ************************************************************************* */
+const commentRouter = require("./comment/router");
+
+router.use("/comment", commentRouter);
+
+/* ************************************************************************* */
+// Import Auth Router
+/* ************************************************************************* */
+
+const authRouter = require("./auth/router");
+
+router.use("/auth", authRouter);
 
 module.exports = router;
